@@ -18,22 +18,36 @@ El usuario ingresa 40 → Suma acumulada: 95.
 El usuario ingresa 10 → Suma acumulada: 105.
 El programa responde: "Has alcanzado la suma objetivo de 105 en 4 entradas." */
 
-sumaAcumulada = 0;
-max = 100;
+let sumaAcumulada = 0;
+const max = 100;
 
 while (sumaAcumulada < max) {
-  let numDig = parseInt(
-    prompt("Ingrese un numero, hasta que la suma supere 100")
-  );
+  // Solicita un número al usuario
+  let numDig = parseInt(prompt("Ingrese un número, hasta que la suma supere 100"), 10);
 
-  if (numDig < 0 || numDig > max) {
-    alert("numero invalido");
-    continue
-  } else if (isNaN (numDig)) {
-    alert("Ingrese un numero, campo vacio");
-  } else if( numDig < max && sumaAcumulada < max){
-    sumaAcumulada += numDig // sumaAcumulado = sumaAcumulado + numDig
-    alert('suma ya llego o paso los 100')
+  // Verifica si el valor ingresado no es un número
+  if (isNaN(numDig)) {
+    alert("Ingrese un número, campo vacío o inválido.");
+    continue;
   }
 
+  // Verifica si el número ingresado es negativo o mayor que el máximo permitido
+  if (numDig < 0 || numDig > max) {
+    alert("Número inválido. Debe estar entre 0 y 100.");
+    continue;
+  }
+
+  // Actualiza la suma acumulada
+  sumaAcumulada += numDig;
+
+  // Verifica si la suma acumulada ha superado o alcanzado el máximo
+  if (sumaAcumulada >= max) {
+    sumaAcumulada = max; // Esto asegura que la suma no supere el máximo
+    alert(`La suma ha alcanzado o superado 100: ${sumaAcumulada}`);
+    alert('La suma ya ha llegado o pasado los 100');
+    break;
+  }
+
+  // Muestra la suma acumulada actual
+  alert(`La suma va en ${sumaAcumulada}`);
 }
